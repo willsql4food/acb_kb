@@ -1,27 +1,29 @@
 # Variables
-$sharedFolderPath = "\\path\to\shared\folder" # Replace with the path to your shared folder containing the images
-$localFolderPath = "$env:USERPROFILE\Pictures\SlideshowImages"
 
-# Create local folder for slideshow images if it doesn't exist
-if (-not (Test-Path $localFolderPath)) {
-    New-Item -ItemType Directory -Path $localFolderPath
-}
+$sharedFolderPath = 'C:\Users\acbur\OneDrive\Pictures\Wallpapers' # Replace with the path to your shared folder containing the images
+# $localFolderPath = "$env:USERPROFILE\Pictures\SlideshowImages"
+$scrapedFromRegistry = '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'
+
+# # Create local folder for slideshow images if it doesn't exist
+# if (-not (Test-Path $localFolderPath)) {
+#     New-Item -ItemType Directory -Path $localFolderPath
+# }
 
 # Download images from shared folder to local folder
-$sharedImages = Get-ChildItem -Path $sharedFolderPath -File
-foreach ($image in $sharedImages) {
-    Copy-Item -Path $image.FullName -Destination $localFolderPath -Force
-}
+# $sharedImages = Get-ChildItem -Path $sharedFolderPath -File
+# foreach ($image in $sharedImages) {
+#     Copy-Item -Path $image.FullName -Destination $localFolderPath -Force
+# }
 
 # Set the Background slideshow
-$BackgroundKeyPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Wallpapers"
+$BackgroundKeyPath = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Wallpapers'
 Set-ItemProperty -Path $BackgroundKeyPath -Name BackgroundType -Type DWord -Value 2
-Set-ItemProperty -Path $BackgroundKeyPath -Name SlideshowDirectoryPath1 -Type String -Value $localFolderPath
+Set-ItemProperty -Path $BackgroundKeyPath -Name SlideshowDirectoryPath1 -Type String -Value $sharedFolderPath
 
 # Set the Lockscreen slideshow
-$LockScreenKeyPath = "HKCU:\SOFTWARE\Policies\Microsoft\Windows\Personalization"
-Set-ItemProperty -Path $LockScreenKeyPath -Name LockScreenSlideshow -Type DWord -Value 1
-Set-ItemProperty -Path $LockScreenKeyPath -Name LockScreenSlideshowDirectory -Type String -Value $localFolderPath
+# $LockScreenKeyPath = 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\Personalization'
+# Set-ItemProperty -Path $LockScreenKeyPath -Name LockScreenSlideshow -Type DWord -Value 1
+# Set-ItemProperty -Path $LockScreenKeyPath -Name LockScreenSlideshowDirectory -Type String -Value $localFolderPath
 
 # Refresh the settings
 RUNDLL32.EXE USER32.DLL,UpdatePerUserSystemParameters 1, True
