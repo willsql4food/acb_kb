@@ -157,10 +157,21 @@ Dependencies can be many-to-many relationships.  While direct invocation is acce
 * Human intvervention
 
 ### How It Works
-1. A process is _registered_, meaning it is defined in the `process` table and 
+#### Setup
+1. A process is _registered_, meaning it is defined in the `process` table
+1. If the process has dependencies, a row for each antecedent & requried state is added to the `process_dependency` table
 
+#### Usage
+1. Each time a process undergoes a state change (Starting, Running, etc.) a row is added to `process_execution_state`
+    1. Best done by calling one of these python function `setProcessState` or one of its special cases:
+        * `startProcess`
+        * `failProcess`
+        * `succeedProcess`
+1. When a dependent process is triggered to run, it checks for clearance
+    1. `allowProcessStart` - returns a boolean (if true process may start) and a string (message detailing antecedent process states)
 
-This necessitates that the process determine its own viability based on observing its antecedents.  (The antecedents neither invoke the process, nor need even have knowledge of them.)
+## Train of thought / Unfinished business
+This necessitates that the process determine its own viability based on observing its antecedents.  (The antecedents neither invoke the process, nor need have knowledge of them.)
 
 The process dependencies can change over time, so directly invoking one process from another should only be done when a high degree of confidence exists that it will be stable over long periods of time.
 
