@@ -1,0 +1,5 @@
+id,name,features,size,feature_test,size_test
+1,frog,legs|tongues|eyes,2-3",Pipes only in features; not quoted,Inches only not quoted
+2,hawk,'wings,feathers,beak,talons','1'' 6"',Commas in features; quoted,'Feet and inches; quoted and '' doubled'
+3,cow,'milk,steak|burgers','7''',Mix of commas and pipes; quoted,'Feet only; quoted and '' doubled'
+4,chicken,'eggs|corn|chicks','28-40"',Pipes only in features; quoted anyway,Inches only; quoted anyway
