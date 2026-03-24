@@ -1,0 +1,5 @@
+id	name	features	size	feature_test	size_test
+1	frog	"legs	tongues	eyes"	"2-3"""	Tabs in features; quoted	"Inches mark ("") doubled; quoted"
+2	hawk	wings,feathers,beak,talons	"1' 6"""	Commas only in features; not quoted	"Feet and inches; quoted and "" doubled"
+3	cow	"milk,steak	burgers"	7'	Mix of tabs and pipes; quoted	Feet only; not quoted
+4	chicken	"eggs	corn	chicks"	"28-40"""	Tabs in features; quoted	"Inches only; quoted and "" doubled"
